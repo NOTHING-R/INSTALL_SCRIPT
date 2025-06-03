@@ -67,12 +67,11 @@ mkdir -p ~/.config/wlogout
 cp -r "$SCRIPT_DIR/wlogout/files/"* ~/.config/wlogout/
 echo "Done setting up wlogout!"
 
-# >>>>> SETTING UP SDDM THEME
-echo "Installing SDDM theme..."
-
-sudo mkdir -p /usr/share/sddm/themes/
-sudo cp -r "$SCRIPT_DIR/sddm/nothing_sddm_theme" /usr/share/sddm/themes/
-sudo mkdir -p /etc/sddm.conf.d/
-sudo cp "$SCRIPT_DIR/sddm/theme.conf.user" /etc/sddm.conf.d/
-
-echo "SDDM theme installed successfully!"
+# >>>>> SETTING UP SDDM THEME (TIGER)
+echo "Installing Tiger SDDM theme..."
+git clone https://github.com/al-swaiti/tiger-sddm-theme.git /tmp/tiger-sddm-theme
+sudo mkdir -p /usr/share/sddm/themes/tiger
+sudo cp -r /tmp/tiger-sddm-theme/* /usr/share/sddm/themes/tiger/
+sudo mkdir -p /etc/sddm.conf.d
+echo -e "[Theme]\nCurrent=tiger" | sudo tee /etc/sddm.conf.d/tiger.conf > /dev/null
+echo "Tiger SDDM theme installed and set as default!"
