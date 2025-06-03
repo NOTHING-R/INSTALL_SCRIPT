@@ -1,0 +1,40 @@
+* INSTALLING ARCH LINUX
+So This is how I setup my system. I use arch linux so at first you have to visit [[https://archlinux.org/download/][ARCH LINUX]] website and
+download the arch iso. Then you to burn it in a pendrive you can find the tutorial [[https://youtu.be/gAnA7X8fAGs?si=PgrMLHdeqaWcD_EH][here]]. And then follow
+the  [[https://youtu.be/AYxaNjbC1wg?si=UYbJj1Zr-gjapE1a][arch install tutorial]]. I install arch like this. Just change the desktop envornment to i3 and you are
+good to go. 
+
+* SOFTWARE SETUP
+I am mainly trying to use only one software [[https://en.wikipedia.org/wiki/Emacs][EMACS]]. I first saw this software in [[https://www.youtube.com/@hexdump1337][hexdump]]. He is an amazing
+person. I follow him since early 2024. I like his work so much. After I saw the workflow and the
+customization of [[https://blog.leonardotamiano.xyz/][Leonardo Tamiano ]]I want his desktop envornment and I want to use my system like him.
+Then I fist learn about window manager. My first window manager was [[https://i3wm.org/][i3wm]]. I used it like 6 month.
+After learning the bacis of window manager then I started learning emacs. I learned the bacis from two 
+youtuber's. They are:
+- [[https://www.youtube.com/watch?v=scBBjZcy6fc&list=PL5--8gKSku15uYCnmxWPO17Dq6hVabAB4][distro tube]] 
+- [[https://youtu.be/48JlgiBpw_I?si=4PQ6LOblljRwMA3J][SYSTEM CRAFTERS]]
+  
+* How to install require software  
+In arch you can find all the software from the pacman and aur.
+
+** AUR setup (yay)
+#+begin_src shell
+sudo pacman -s --needed git base-devel go
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+#+end_src
+
+For more information visit [[https://github.com/Jguer/yay][yay]]. 
+
+* Which package you needed
+
+For work with arch and emacs you have to download some package and fonts.
+#+begin_src shell
+sudo pacman -S nerd-fonts firefox emacs obs-studio nitrogen feh sddm net-tools fastfetch kitty 
+picom pavucontrol flameshot thunar vlc vim make cmake
+#+end_src
+
+#+begin_src shell
+yay -S wlogout betterlockscreen 
+#+end_src
