@@ -1,4 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
+
+# Get the current script directory
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "Setting up yay..."
 cd ~
@@ -8,19 +11,17 @@ cd yay
 makepkg -si
 cd ..
 
-echo "Installing require application..."
-
+echo "Installing required applications..."
 sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr vim network-manager-applet net-tools i3 dmenu sddm emacs alacritty nitrogen stow picom make cmake nerd-fonts ttf-jetbrains-mono-nerd qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 sudo systemctl enable sddm
 echo "Done!!"
 
 read -p "Do you want to clone the dotfiles repo? (yes/no): " answer
-
 if [[ "$answer" == "yes" || "$answer" == "y" ]]; then
-    echo "cloning dotfiles repo"
+    echo "Cloning dotfiles repo..."
     git clone https://github.com/NOTHING-R/dotfiles.git ~/dotfiles
 else
-    echo "You can found it in https://github.com/NOTHING-R"
+    echo "You can find it at https://github.com/NOTHING-R"
 fi
 
 read -p "Do you want to set up EXWM in .xinitrc? (yes/no): " answer
@@ -30,8 +31,6 @@ if [[ "$answer" == "yes" || "$answer" == "y" ]]; then
 
     cat > ~/.xinitrc <<EOF
 #!/bin/sh
-# Set environment variables or configurations
-
 # Start EXWM via Emacs
 exec emacs
 EOF
@@ -48,36 +47,32 @@ Type=Application
 DesktopName=EXWM
 EOF'
 
-    echo "EXWM setup complete!" 
+    echo "EXWM setup complete!"
 else
     echo "Skipping EXWM setup. You can do it manually later."
 fi
 
-# >>>>>SETTING UP BETTERLOCKSCREEN
-echo "Started......."
-yay -S betterlockscreen 
-echo "Setting up......"
-betterlockscreen -u betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg 
-# Ask for confirmation before locking
-echo "Done Betterlockscreen"
-# >>>>>SETTING UP wlogout 
-echo "Started....."
-yay -S wlogout
-mkdir -p ~/.config/wlogout 
-cp -r wlogout/files/* ~/.config/wlogout/
-echo "done!"
+# >>>>> SETTING UP BETTERLOCKSCREEN
+echo "Installing betterlockscreen..."
+yay -S betterlockscreen --noconfirm
 
-# >>>>>SETTING UP sddm
+echo "Setting betterlockscreen wallpaper..."
+betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg"
+echo "Done with betterlockscreen!"
 
-if [ "$EUID" -ne 0 ]; then 
-  echo "Please give your root password"
-  exec sudo "$0" "$@"
-fi
+# >>>>> SETTING UP WLOGOUT
+echo "Installing wlogout..."
+yay -S wlogout --noconfirm
+mkdir -p ~/.config/wlogout
+cp -r "$SCRIPT_DIR/wlogout/files/"* ~/.config/wlogout/
+echo "Done setting up wlogout!"
 
-sudo pacman -S sddm
-sudo systemctl enable sddm
-mkdir -p /etc/sddm.conf.d/
-touch /etc/sddm.conf.d/theme.conf.user
-sudo cp sddm/nothing_sddm_theme/ /usr/share/sddm/themes/ 
-cp theme.conf.user /etc/sddm.conf.d/
-echo "Installed successfully"
+# >>>>> SETTING UP SDDM THEME
+echo "Installing SDDM theme..."
+
+sudo mkdir -p /usr/share/sddm/themes/
+sudo cp -r "$SCRIPT_DIR/sddm/nothing_sddm_theme" /usr/share/sddm/themes/
+sudo mkdir -p /etc/sddm.conf.d/
+sudo cp "$SCRIPT_DIR/sddm/theme.conf.user" /etc/sddm.conf.d/
+
+echo "SDDM theme installed successfully!"
