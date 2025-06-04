@@ -12,34 +12,30 @@ makepkg -si
 cd ..
 
 echo "Installing required applications..."
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr vim network-manager-applet net-tools i3 dmenu sddm emacs alacritty nitrogen stow picom make cmake nerd-fonts ttf-jetbrains-mono-nerd qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr vim network-manager-applet net-tools i3 dmenu dunst sddm emacs alacritty nitrogen stow picom make cmake nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 sudo systemctl enable sddm
 echo "Done!!"
 
-read -p "Do you want to clone the dotfiles repo? (yes/no): " answer
-if [[ "$answer" == "yes" || "$answer" == "y" ]]; then
-    echo "Cloning dotfiles repo..."
-    git clone https://github.com/NOTHING-R/dotfiles.git ~/dotfiles
-else
-    echo "You can find it at https://github.com/NOTHING-R"
-fi
+# >>>>> CLONING THE DOTFILES REPO 
+echo "Cloning dotfiles repo..."
+git clone https://github.com/NOTHING-R/dotfiles.git ~/dotfiles
+echo "Done cloning the repo"
 
-read -p "Do you want to set up EXWM in .xinitrc? (yes/no): " answer
-if [[ "$answer" == "yes" || "$answer" == "y" ]]; then
-    echo "Setting up EXWM in .xinitrc and Xresources..."
-    echo "Xft.dpi: 125" > ~/.Xresources
+# >>>>> SETTING UP BETTERLOCKSCREEN
+echo "Setting up EXWM in .xinitrc and Xresources..."
+echo "Xft.dpi: 125" > ~/.Xresources
 
-    cat > ~/.xinitrc <<EOF
+cat > ~/.xinitrc <<EOF
 #!/bin/sh
 # Start EXWM via Emacs
 exec emacs
 EOF
 
-    chmod +x ~/.xinitrc
-    echo ".xinitrc configured!"
+chmod +x ~/.xinitrc
+echo ".xinitrc configured!"
 
-    echo "Creating EXWM desktop session entry..."
-    sudo bash -c 'cat > /usr/share/xsessions/exwm.desktop <<EOF
+echo "Creating EXWM desktop session entry..."
+sudo bash -c 'cat > /usr/share/xsessions/exwm.desktop <<EOF
 [Desktop Entry]
 Name=EXWM
 Exec=emacs
@@ -47,10 +43,8 @@ Type=Application
 DesktopName=EXWM
 EOF'
 
-    echo "EXWM setup complete!"
-else
-    echo "Skipping EXWM setup. You can do it manually later."
-fi
+echo "EXWM setup complete!"
+
 
 # >>>>> SETTING UP BETTERLOCKSCREEN
 echo "Installing betterlockscreen..."
@@ -75,3 +69,6 @@ sudo cp -r /tmp/tiger-sddm-theme/* /usr/share/sddm/themes/tiger/
 sudo mkdir -p /etc/sddm.conf.d
 echo -e "[Theme]\nCurrent=tiger" | sudo tee /etc/sddm.conf.d/tiger.conf > /dev/null
 echo "Tiger SDDM theme installed and set as default!"
+
+cd ~/dotfiles/
+stow i3/ emacs/ fastfetch/
