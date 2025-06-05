@@ -115,7 +115,14 @@ fi
 echo "✅ Tiger SDDM theme installed, configured, and background set successfully!"
 
 # >>>>>> SETTING UP DAFULT WALLPAPER
-nitrogen --set-zoom-fill background/wallpaper.png --save
+# nitrogen --set-zoom-fill background/wallpaper.png --save
+if [ -f "$SCRIPT_DIR/background/wallpaper.png" ]; then
+    echo "🎨 Wallpaper found, setting via nitrogen..."
+    nitrogen --set-zoom-fill "$SCRIPT_DIR/background/wallpaper.png" --save
+    echo "✅ Wallpaper set successfully!"
+else
+    echo "⚠️ Wallpaper not found at $SCRIPT_DIR/background/wallpaper.png"
+fi
 
 # >>>>> UPDATING i3 emacs and fastfetch script with stow 
 echo "UPDATING i3 emacs and fastfetch with stow"
