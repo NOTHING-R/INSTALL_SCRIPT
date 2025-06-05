@@ -114,10 +114,11 @@ fi
 
 echo "✅ Tiger SDDM theme installed, configured, and background set successfully!"
 
+# >>>>>> SETTING UP DAFULT WALLPAPER
+nitrogen --set-zoom-fill background/wallpaper.png --save
+
 # >>>>> UPDATING i3 emacs and fastfetch script with stow 
 echo "UPDATING i3 emacs and fastfetch with stow"
 cd ~/dotfiles/
 stow i3/ emacs/ fastfetch/
 
-# >>>>>> SETTING UP DAFULT WALLPAPER
-nitrogen --set-zoom-fill background/wallpaper.png --save
