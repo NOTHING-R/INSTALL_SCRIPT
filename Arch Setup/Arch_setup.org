@@ -1,12 +1,12 @@
 * INSTALLING ARCH LINUX
 So This is how I setup my system. I use arch linux so at first you have to visit [[https://archlinux.org/download/][ARCH LINUX]] website and
-download the arch iso. Then you to burn it in a pendrive you can find the tutorial [[https://youtu.be/gAnA7X8fAGs?si=PgrMLHdeqaWcD_EH][here]]. And then follow
+download the arch iso. Then you have to burn it in a pendrive you can find the tutorial [[https://youtu.be/gAnA7X8fAGs?si=PgrMLHdeqaWcD_EH][here]]. And then follow
 the  [[https://youtu.be/AYxaNjbC1wg?si=UYbJj1Zr-gjapE1a][arch install tutorial]]. I install arch like this. Just change the desktop envornment to i3 and you are
 good to go. 
 
 * SOFTWARE SETUP
 I am mainly trying to use only one software [[https://en.wikipedia.org/wiki/Emacs][EMACS]]. I first saw this software in [[https://www.youtube.com/@hexdump1337][hexdump]]. He is an amazing
-person. I follow him since early 2024. I like his work so much. After I saw the workflow and the
+person. I follow him since early 2024. I like his work so much. After I saw the workflow and the system
 customization of [[https://blog.leonardotamiano.xyz/][Leonardo Tamiano ]]I want his desktop envornment and I want to use my system like him.
 Then I fist learn about window manager. My first window manager was [[https://i3wm.org/][i3wm]]. I used it like 6 month.
 After learning the bacis of window manager then I started learning emacs. I learned the bacis from two 
@@ -31,10 +31,21 @@ For more information visit [[https://github.com/Jguer/yay][yay]].
 
 For work with arch and emacs you have to download some package and fonts.
 #+begin_src shell
-sudo pacman -S nerd-fonts firefox emacs obs-studio nitrogen feh sddm net-tools fastfetch kitty 
-picom pavucontrol flameshot thunar vlc vim make cmake
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst flameshot sddm emacs alacritty nitrogen stow picom make cmake vlc loupe firefox nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 #+end_src
 
+* DISPLAY MANAGEMENT AND GRAPHICAL EFFECTS
+All the package here, I think they are the basic software you need to run your system. The [[https://www.x.org/wiki/][xorg]] and the other xorg tool's for running graphical application you can find more info about this on [[https://wiki.archlinux.org/title/Xorg][Xorg Arch]]. 
+* NETWORK TOOLS
+In arch linux you have to download tools for accessing and maintaining your wireless and other connection for those works you need those tools:
+#+begin_src shell
+network-manager-applet net-tools
+#+end_src
+* WHICH SOFTWARES I USE 
+I think you should have a extra [[https://wiki.archlinux.org/title/Desktop_environment][DE]] or [[https://wiki.archlinux.org/title/Window_manager][WM]] for saftey. If there are any configuretion error or any problem occer in your main desktop environment then you can switch to your second environment and troubleshoot that problem. Thats why I use [[https://i3wm.org/][i3wm]] as my second environment. For transparency and smoothness I use [[https://wiki.archlinux.org/title/Picom][picom]]. For notification I use [[https://wiki.archlinux.org/title/Dunst][dunst]]. For screenshoot I use [[https://wiki.archlinux.org/title/Flameshot][flameshot]]. As a terminal I use [[https://alacritty.org/][alacritty]]. For setting wallpaper and maintaining wallpaper settings I use [[https://wiki.archlinux.org/title/Nitrogen][nitrogen]]. And for playing video I use [[https://wiki.archlinux.org/title/VLC_media_player][VLC]]. And for pictures I use [[https://archlinux.org/packages/extra/x86_64/loupe/][loupe]] know as Image Viewer. At the last I use  [[https://wiki.archlinux.org/title/Firefox][Firefox]]. And not but the list [[https://man.archlinux.org/man/stow.8][stow]] for maintaining config files.
+
+* LOCK-SCREEN, POWER OPTION AND DISPLAY MANAGER
+As a lockscreen I use [[https://github.com/betterlockscreen/betterlockscreen][Betterlockscreen]]. For all the power options I use [[https://aur.archlinux.org/packages/wlogout][wlogout]]. And as a display manager I use [[https://wiki.archlinux.org/title/SDDM][sddm]] and the [[https://store.kde.org/p/1985612][sddm tiger theme]]. 
 #+begin_src shell
 yay -S wlogout betterlockscreen 
 #+end_src
