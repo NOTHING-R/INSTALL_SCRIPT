@@ -1,7 +1,7 @@
 #!/bin/bash
 # Colors for output
-GREEN="\e[32m"
-YELLOW="\e[33m"
+green="\e[32m"
+yellow="\e[33m"
 RESET="\e[0m"
 
 # Get the current script directory
