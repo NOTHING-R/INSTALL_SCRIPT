@@ -49,7 +49,7 @@ echo "EXWM setup complete!"
 
 # >>>>> SETTING UP BETTERLOCKSCREEN
 echo "Installing betterlockscreen..."
-yay -S betterlockscreen --noconfirm
+yay -S betterlockscreen
 
 echo "Setting betterlockscreen wallpaper..."
 betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg"
