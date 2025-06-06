@@ -32,30 +32,14 @@ echo -e "${YELLOW}Setting up EXWM in .xinitrc and Xresources...${RESET}"
 echo "Xft.dpi: 125" > ~/.Xresources
 xrdb -merge ~/.Xresources
 
+
 cat > ~/.xinitrc <<EOF
 #!/bin/sh
-# Merge Xresources
-xrdb -merge ~/.Xresources
-
-# Restore wallpaper via nitrogen
-nitrogen --restore &
-
-# Start EXWM (or i3 or anything else)
 exec emacs
 EOF
 
 chmod +x ~/.xinitrc
-echo -e "${GREEN}.xinitrc configured with nitrogen restore!${RESET}"
-
-
-# cat > ~/.xinitrc <<EOF
-# #!/bin/sh
-# exec emacs
-# EOF
-
-# chmod +x ~/.xinitrc
-# echo -e "${GREEN}.xinitrc configured!${RESET}"
-
+echo -e "${GREEN}.xinitrc configured!${RESET}"
 
 echo -e "${YELLOW}Creating EXWM desktop session entry...${RESET}"
 sudo bash -c 'cat > /usr/share/xsessions/exwm.desktop <<EOF
