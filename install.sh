@@ -52,7 +52,7 @@ betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-bl
 echo -e "${GREEN}Done with betterlockscreen!${RESET}"
 
 echo -e "${YELLOW}Installing wlogout...${RESET}"
-yay -S wlogout --noconfirm
+yay -S wlogout 
 mkdir -p ~/.config/wlogout
 cp -r "$SCRIPT_DIR/wlogout/files/"* ~/.config/wlogout/
 echo -e "${GREEN}Done setting up wlogout!${RESET}"
