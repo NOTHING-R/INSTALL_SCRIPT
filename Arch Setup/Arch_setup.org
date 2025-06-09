@@ -1,10 +1,26 @@
+#+AUTHOR: NOTHING
+* TABLE OF CONTENT :toc::
+- [[#installing-arch-linux][INSTALLING ARCH LINUX]]
+- [[#my-short-journey][MY SHORT JOURNEY]]
+- [[#softwares-i-use][SOFTWARES I USE]]
+- [[#how-to-install-require-softwares][How to install require softwares]]
+  - [[#aur-setup-yay][AUR setup (yay)]]
+- [[#package-you-need][Package you need]]
+- [[#display-management-and-graphical-effects][DISPLAY MANAGEMENT AND GRAPHICAL EFFECTS]]
+- [[#network-tools][NETWORK TOOLS]]
+- [[#lock-screen-power-option-and-display-manager][LOCK-SCREEN, POWER OPTION AND DISPLAY MANAGER]]
+  - [[#lock-screen-and-power-option][LOCK SCREEN AND POWER OPTION]]
+  - [[#login-manager][LOGIN MANAGER]]
+  - [[#login-manager-theme][LOGIN MANAGER THEME]]
+- [[#my-main-software][MY MAIN SOFTWARE]]
+
 * INSTALLING ARCH LINUX
 So This is how I setup my system. I use arch linux so at first you have to visit [[https://archlinux.org/download/][ARCH LINUX]] website and
 download the arch iso. Then you have to burn it in a pendrive you can find the tutorial [[https://youtu.be/gAnA7X8fAGs?si=PgrMLHdeqaWcD_EH][here]]. And then follow
 the  [[https://youtu.be/AYxaNjbC1wg?si=UYbJj1Zr-gjapE1a][arch install tutorial]]. I install arch like this. Just change the desktop envornment to i3 and you are
 good to go. 
 
-* SOFTWARE SETUP
+* MY SHORT JOURNEY 
 I am mainly trying to use only one software [[https://en.wikipedia.org/wiki/Emacs][EMACS]]. I first saw this software in [[https://www.youtube.com/@hexdump1337][hexdump]]. He is an amazing
 person. I follow him since early 2024. I like his work so much. After I saw the workflow and the system
 customization of [[https://blog.leonardotamiano.xyz/][Leonardo Tamiano ]]I want his desktop envornment and I want to use my system like him.
@@ -14,8 +30,11 @@ youtuber's. They are:
 - [[https://www.youtube.com/watch?v=scBBjZcy6fc&list=PL5--8gKSku15uYCnmxWPO17Dq6hVabAB4][distro tube]] 
 - [[https://youtu.be/48JlgiBpw_I?si=4PQ6LOblljRwMA3J][SYSTEM CRAFTERS]]
   
-* How to install require software  
-In arch you can find all the software from the pacman and aur.
+* SOFTWARES I USE 
+I think you should have a extra [[https://wiki.archlinux.org/title/Desktop_environment][DE]] or [[https://wiki.archlinux.org/title/Window_manager][WM]] for saftey. If there are any configuretion error or any problem occer in your main desktop environment then you can switch to your second environment and troubleshoot that problem. Thats why I use [[https://i3wm.org/][i3wm]] as my second environment. For transparency and smoothness I use [[https://wiki.archlinux.org/title/Picom][picom]]. For notification I use [[https://wiki.archlinux.org/title/Dunst][dunst]]. For screenshoot I use [[https://wiki.archlinux.org/title/Flameshot][flameshot]]. As a terminal I use [[https://alacritty.org/][alacritty]]. For setting wallpaper and maintaining wallpaper settings I use [[https://wiki.archlinux.org/title/Nitrogen][nitrogen]]. And for playing video there is [[https://wiki.archlinux.org/title/VLC_media_player][VLC]]. And for pictures I use [[https://archlinux.org/packages/extra/x86_64/loupe/][loupe]] know as Image Viewer. At the I use  [[https://wiki.archlinux.org/title/Firefox][Firefox]]. And not but the list [[https://man.archlinux.org/man/stow.8][stow]] for maintaining config files.
+
+* How to install require softwares
+In arch you can find most of the software from the pacman and aur.
 
 ** AUR setup (yay)
 #+begin_src shell
@@ -27,7 +46,7 @@ makepkg -si
 
 For more information visit [[https://github.com/Jguer/yay][yay]]. 
 
-* Which package you needed
+* Package you need
 
 For work with arch and emacs you have to download some package and fonts.
 #+begin_src shell
@@ -35,17 +54,44 @@ sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-man
 #+end_src
 
 * DISPLAY MANAGEMENT AND GRAPHICAL EFFECTS
-All the package here, I think they are the basic software you need to run your system. The [[https://www.x.org/wiki/][xorg]] and the other xorg tool's for running graphical application you can find more info about this on [[https://wiki.archlinux.org/title/Xorg][Xorg Arch]]. 
+All the package here, I think they are the basic software you need to run your system. The [[https://www.x.org/wiki/][xorg]] and the other xorg tool's are for running graphical application you can find more info about this on [[https://wiki.archlinux.org/title/Xorg][Xorg Arch]]. 
+
 * NETWORK TOOLS
 In arch linux you have to download tools for accessing and maintaining your wireless and other connection for those works you need those tools:
 #+begin_src shell
-network-manager-applet net-tools
+sudo pacman -S network-manager-applet net-tools
 #+end_src
-* WHICH SOFTWARES I USE 
-I think you should have a extra [[https://wiki.archlinux.org/title/Desktop_environment][DE]] or [[https://wiki.archlinux.org/title/Window_manager][WM]] for saftey. If there are any configuretion error or any problem occer in your main desktop environment then you can switch to your second environment and troubleshoot that problem. Thats why I use [[https://i3wm.org/][i3wm]] as my second environment. For transparency and smoothness I use [[https://wiki.archlinux.org/title/Picom][picom]]. For notification I use [[https://wiki.archlinux.org/title/Dunst][dunst]]. For screenshoot I use [[https://wiki.archlinux.org/title/Flameshot][flameshot]]. As a terminal I use [[https://alacritty.org/][alacritty]]. For setting wallpaper and maintaining wallpaper settings I use [[https://wiki.archlinux.org/title/Nitrogen][nitrogen]]. And for playing video I use [[https://wiki.archlinux.org/title/VLC_media_player][VLC]]. And for pictures I use [[https://archlinux.org/packages/extra/x86_64/loupe/][loupe]] know as Image Viewer. At the last I use  [[https://wiki.archlinux.org/title/Firefox][Firefox]]. And not but the list [[https://man.archlinux.org/man/stow.8][stow]] for maintaining config files.
 
 * LOCK-SCREEN, POWER OPTION AND DISPLAY MANAGER
 As a lockscreen I use [[https://github.com/betterlockscreen/betterlockscreen][Betterlockscreen]]. For all the power options I use [[https://aur.archlinux.org/packages/wlogout][wlogout]]. And as a display manager I use [[https://wiki.archlinux.org/title/SDDM][sddm]] and the [[https://store.kde.org/p/1985612][sddm tiger theme]]. 
+** LOCK SCREEN AND POWER OPTION
 #+begin_src shell
+#>>>>> WLOGOUT AND BETTERLOCKSCREEN
 yay -S wlogout betterlockscreen 
 #+end_src
+
+** LOGIN MANAGER 
+#+begin_src shell
+sudo pacman -S sddm 
+sudo systemctl enable sddm
+#+end_src
+** LOGIN MANAGER THEME
+#+begin_src shell
+#!/bin/bash
+#>>>>> SETTING UP THE TIGER THEME FOR SDDM LOGIN SCREEN
+echo -e "${YELLOW}Installing Tiger SDDM theme...${RESET}"
+git clone https://github.com/al-swaiti/tiger-sddm-theme.git /tmp/tiger-sddm-theme
+sudo mkdir -p /usr/share/sddm/themes/tiger
+sudo cp -r /tmp/tiger-sddm-theme/* /usr/share/sddm/themes/tiger/
+sudo mkdir -p /etc/sddm.conf.d
+
+CONF_FILE="/etc/sddm.conf.d/theme.conf.user"
+if [ -f "$CONF_FILE" ] && grep -q "^\[Theme\]" "$CONF_FILE"; then
+    sudo sed -i '/^\[Theme\]/,/^\[/ s/^Current=.*/Current=tiger/' "$CONF_FILE"
+else
+    echo -e "[Theme]\nCurrent=tiger" | sudo tee -a "$CONF_FILE" > /dev/null
+fi
+#+end_src
+
+* MY MAIN SOFTWARE
+As I mentioned earlyer I am using only [[https://www.gnu.org/software/emacs/][EMACS]]. I will bring the full customization soon!
