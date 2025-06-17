@@ -1,0 +1,18 @@
+* BETTERLOCKSCREEN
+
+You can found the project here: [[https://github.com/betterlockscreen/betterlockscreen][betterlockscreen]]
+** INSTALLING 
+#+begin_src shell
+yay -S betterlockscreen 
+#+end_src
+
+** All the command for betterlockscreen
+For setting up a background image 
+#+begin_src shell
+betterlockscreen -u <path of image>
+#+end_src
+
+For test run 
+#+begin_src shell
+betterlockscreen --lock
+#+end_src
