@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo -e "${YELLOW}Setting up yay...${RESET}"
 cd ~
+sudo pacman -Suy
 sudo pacman -S --needed git base-devel go
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -16,7 +17,7 @@ makepkg -si
 cd ..
 
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst flameshot sddm emacs alacritty nitrogen stow picom make cmake nodejs npm vlc loupe firefox nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 sudo systemctl enable sddm
 echo -e "${GREEN}Done installing applications!${RESET}"
 
@@ -51,11 +52,15 @@ DesktopName=EXWM
 EOF'
 echo -e "${GREEN}EXWM setup complete!${RESET}"
 
+
+sudo pacman -Suy
+yay -Suy
 echo -e "${YELLOW}Installing betterlockscreen...${RESET}"
 yay -S betterlockscreen
 betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg"
 echo -e "${GREEN}Done with betterlockscreen!${RESET}"
 
+sudo pacman -Suy
 echo -e "${YELLOW}Installing wlogout...${RESET}"
 yay -S wlogout 
 mkdir -p ~/.config/wlogout
