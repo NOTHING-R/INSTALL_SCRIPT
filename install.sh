@@ -7,6 +7,7 @@ RESET="\e[0m"
 # Get the current script directory
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+# SETTING UP YAY AND UPDATING THE PACKAGES
 echo -e "${YELLOW}Setting up yay...${RESET}"
 cd ~
 sudo pacman -Suy
@@ -16,15 +17,18 @@ cd yay
 makepkg -si
 cd ..
 
+# INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
 sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 sudo systemctl enable sddm
 echo -e "${GREEN}Done installing applications!${RESET}"
 
+#>>>>>>CLONEING THE DOTFILES REPOR
 echo -e "${YELLOW}Cloning dotfiles repo...${RESET}"
 git clone https://github.com/NOTHING-R/dotfiles.git ~/dotfiles
 echo -e "${GREEN}Done cloning the repo.${RESET}"
 
+#>>>>>>ADDING AND EDITING THE NECCESSERY FILES FOR EXWM SETUP
 echo -e "${YELLOW}Setting up EXWM in .xinitrc and Xresources...${RESET}"
 echo "Xft.dpi: 125" > ~/.Xresources
 xrdb -merge ~/.Xresources
@@ -52,7 +56,7 @@ DesktopName=EXWM
 EOF'
 echo -e "${GREEN}EXWM setup complete!${RESET}"
 
-
+#>>>>>>INSTALLING BETTERLOCKSCREEN FOR LOCKSCREEN
 sudo pacman -Suy
 yay -Suy
 echo -e "${YELLOW}Installing betterlockscreen...${RESET}"
@@ -60,6 +64,7 @@ yay -S betterlockscreen
 betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg"
 echo -e "${GREEN}Done with betterlockscreen!${RESET}"
 
+#>>>>>>SETTING UP WLOGOUT
 sudo pacman -Suy
 echo -e "${YELLOW}Installing wlogout...${RESET}"
 yay -S wlogout 
@@ -67,6 +72,8 @@ mkdir -p ~/.config/wlogout
 cp -r "$SCRIPT_DIR/wlogout/files/"* ~/.config/wlogout/
 echo -e "${GREEN}Done setting up wlogout!${RESET}"
 
+
+#>>>>>>INSTALLING AND EDITIGN THE SDDM THEME
 echo -e "${YELLOW}Installing Tiger SDDM theme...${RESET}"
 git clone https://github.com/al-swaiti/tiger-sddm-theme.git /tmp/tiger-sddm-theme
 sudo mkdir -p /usr/share/sddm/themes/tiger
@@ -100,6 +107,8 @@ fi
 
 echo -e "${GREEN}✅ Tiger SDDM theme installed, configured, and background set successfully!${RESET}"
 
+
+#>>>>>>SETTING UP THE BACKGROUDN WITH NITROGEN
 if [ -f "$SCRIPT_DIR/background/wallpaper.png" ]; then
     echo -e "${YELLOW}🎨 Wallpaper found, setting via nitrogen...${RESET}"
     nitrogen --set-zoom-fill "$SCRIPT_DIR/background/wallpaper.png" --save
@@ -108,6 +117,7 @@ else
     echo -e "${YELLOW}⚠️ Wallpaper not found at $SCRIPT_DIR/background/wallpaper.png${RESET}"
 fi
 
+#>>>>>>CONFIGUREING THE DOTEFILES WITH STOW
 echo -e "${YELLOW}UPDATING i3, emacs, and fastfetch with stow...${RESET}"
 cd ~/dotfiles/
 stow i3/ emacs/ fastfetch/
