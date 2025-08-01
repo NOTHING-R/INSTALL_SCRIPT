@@ -19,7 +19,7 @@ cd ..
 
 # INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd 
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 
 echo -e "${GREEN}ENABLEING SDDM SERVICE!${RESET}"
 sudo systemctl enable sddm.service
