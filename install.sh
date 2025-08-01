@@ -21,6 +21,9 @@ cd ..
 echo -e "${YELLOW}Installing required applications...${RESET}"
 sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd 
 
+echo -e "${GREEN}ENABLEING SDDM SERVICE!${RESET}"
+sudo systemctl enable sddm.service
+
 echo -e "${GREEN}INSTALLING FISH AS DEFULT SHELL!${RESET}"
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
