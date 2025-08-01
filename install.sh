@@ -19,10 +19,13 @@ cd ..
 
 # INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
-sudo systemctl enable sddm
-echo -e "${GREEN}Done installing applications!${RESET}"
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd 
 
+echo -e "${GREEN}INSTALLING FISH AS DEFULT SHELL!${RESET}"
+chsh -s /usr/bin/fish
+sudo chsh -s /usr/bin/fish
+
+echo -e "${GREEN}Done installing applications!${RESET}"
 #>>>>>>CLONEING THE DOTFILES REPOR
 echo -e "${YELLOW}Cloning dotfiles repo...${RESET}"
 git clone https://github.com/NOTHING-R/dotfiles.git ~/dotfiles
@@ -32,11 +35,6 @@ echo -e "${GREEN}Done cloning the repo.${RESET}"
 echo -e "${YELLOW}Setting up EXWM in .xinitrc and Xresources...${RESET}"
 echo "Xft.dpi: 125" > ~/.Xresources
 xrdb -merge ~/.Xresources
-
-echo -e "${YELLOW}Setting up EXWM in .xinitrc and Xresources...${RESET}"
-echo "Xft.dpi: 125" > ~/.Xresources
-xrdb -merge ~/.Xresources
-
 
 cat > ~/.xinitrc <<EOF
 #!/bin/sh
@@ -118,7 +116,7 @@ else
 fi
 
 #>>>>>>CONFIGUREING THE DOTEFILES WITH STOW
-echo -e "${YELLOW}UPDATING i3, emacs, and fastfetch with stow...${RESET}"
+echo -e "${YELLOW}UPDATING i3, emacs, dunst and fastfetch with stow...${RESET}"
 cd ~/dotfiles/
-stow i3/ emacs/ fastfetch/
+stow i3/ emacs/ fastfetch/ dunst/
 echo -e "${GREEN}✔️ Dotfiles applied successfully!${RESET}"
