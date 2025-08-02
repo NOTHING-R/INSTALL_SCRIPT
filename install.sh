@@ -19,8 +19,7 @@ cd ..
 
 # INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects 
-
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom make cmake nodejs npm vlc loupe firefox thunar nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects
 echo -e "${GREEN}ADDING VM CONFIG!${RESET}"
 sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
 sudo systemctl enable libvirtd.service
