@@ -136,6 +136,7 @@ rm -rf ~/.config/nvim/.git
 echo -e "${YELLOW}UPDATING i3, emacs, dunst and fastfetch with stow...${RESET}"
 cd
 rm -rf ~/.config/emacs
+rm -rf ~/.emacs.d
 rm -rf ~/.config/i3
 rm -rf ~/.config/dunst
 
