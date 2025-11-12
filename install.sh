@@ -81,42 +81,6 @@ mkdir -p ~/.config/wlogout
 cp -r "$SCRIPT_DIR/wlogout/files/"* ~/.config/wlogout/
 echo -e "${GREEN}Done setting up wlogout!${RESET}"
 
-
-#>>>>>>INSTALLING AND EDITIGN THE SDDM THEME
-echo -e "${YELLOW}Installing Tiger SDDM theme...${RESET}"
-git clone https://github.com/al-swaiti/tiger-sddm-theme.git /tmp/tiger-sddm-theme
-sudo mkdir -p /usr/share/sddm/themes/tiger
-sudo cp -r /tmp/tiger-sddm-theme/* /usr/share/sddm/themes/tiger/
-sudo mkdir -p /etc/sddm.conf.d
-
-CONF_FILE="/etc/sddm.conf.d/theme.conf.user"
-if [ -f "$CONF_FILE" ] && grep -q "^\[Theme\]" "$CONF_FILE"; then
-    sudo sed -i '/^\[Theme\]/,/^\[/ s/^Current=.*/Current=tiger/' "$CONF_FILE"
-else
-    echo -e "[Theme]\nCurrent=tiger" | sudo tee -a "$CONF_FILE" > /dev/null
-fi
-
-THEME_CONF="/usr/share/sddm/themes/tiger/theme.conf"
-if [ -f "$THEME_CONF" ]; then
-    if grep -q "^Background=" "$THEME_CONF"; then
-        sudo sed -i 's/^Background=.*/Background="default"/' "$THEME_CONF"
-    else
-        echo 'Background="default"' | sudo tee -a "$THEME_CONF" > /dev/null
-    fi
-else
-    echo 'Background="default"' | sudo tee "$THEME_CONF" > /dev/null
-fi
-
-if [ -f "$SCRIPT_DIR/background/default" ]; then
-    sudo cp "$SCRIPT_DIR/background/default" "/usr/share/sddm/themes/tiger/default"
-    echo -e "${GREEN}✔️ Background image set to default in tiger theme.${RESET}"
-else
-    echo -e "${YELLOW}⚠️ Warning: $SCRIPT_DIR/background/default not found! Background won't be set.${RESET}"
-fi
-
-echo -e "${GREEN}✅ Tiger SDDM theme installed, configured, and background set successfully!${RESET}"
-
-
 #>>>>>>SETTING UP THE BACKGROUDN WITH NITROGEN
 if [ -f "$SCRIPT_DIR/background/wallpaper.png" ]; then
     echo -e "${YELLOW}🎨 Wallpaper found, setting via nitrogen...${RESET}"
@@ -127,7 +91,7 @@ else
 fi
 
 
-#>>>>>> INSTALLING LAZYVIM FOR CODING
+# #>>>>>> INSTALLING LAZYVIM FOR CODING
 sudo pacman -S neovim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
@@ -141,5 +105,5 @@ rm -rf ~/.config/i3
 rm -rf ~/.config/dunst
 
 cd ~/dotfiles/
-stow i3/ emacs/ fastfetch/ dunst/
+stow i3/ emacs/ fastfetch/ dunst/ nvim/
 echo -e "${GREEN}✔️ Dotfiles applied successfully!${RESET}"
