@@ -93,8 +93,7 @@ else
 fi
 
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
+#ADDING SDDM THEME 
 echo -e "${YELLOW}Installing Tiger SDDM theme...${RESET}"
 
 # Clone repo into /tmp
