@@ -19,7 +19,7 @@ cd ..
 
 # INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools i3 dmenu dunst libnotify flameshot sddm emacs alacritty fish nitrogen stow picom clang make cmake gcc nodejs npm vlc loupe firefox thunar okular nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects ripgrep fd unzip curl 
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools dunst libnotify flameshot sddm emacs alacritty fish stow picom clang make cmake gcc nodejs npm vlc loupe firefox thunar okular nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects ripgrep fd unzip curl 
 echo -e "${GREEN}ADDING VM CONFIG!${RESET}"
 sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
 sudo systemctl enable libvirtd.service
@@ -68,6 +68,8 @@ echo -e "${GREEN}EXWM setup complete!${RESET}"
 sudo pacman -Suy
 yay -Suy
 echo -e "${YELLOW}Installing betterlockscreen...${RESET}"
+
+sudo pacman -Rns i3lock
 yay -S betterlockscreen
 betterlockscreen -u "$SCRIPT_DIR/betterlockscreen/wallpaper/grim-reaper-skull-black-background-scary-5k-4968x2848-902.jpg"
 echo -e "${GREEN}Done with betterlockscreen!${RESET}"
@@ -89,6 +91,66 @@ if [ -f "$SCRIPT_DIR/background/wallpaper.png" ]; then
 else
     echo -e "${YELLOW}⚠️ Wallpaper not found at $SCRIPT_DIR/background/wallpaper.png${RESET}"
 fi
+
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo -e "${YELLOW}Installing Tiger SDDM theme...${RESET}"
+
+# Clone repo into /tmp
+git clone https://github.com/al-swaiti/tiger-sddm-theme.git /tmp/tiger-sddm-theme
+
+# Extract tiger.tar.gz into SDDM theme directory
+sudo mkdir -p /usr/share/sddm/themes
+sudo tar -xzvf /tmp/tiger-sddm-theme/tiger.tar.gz -C /usr/share/sddm/themes
+
+# Ensure the theme directory name is correct
+THEME_DIR="/usr/share/sddm/themes/tiger"
+
+if [ ! -d "$THEME_DIR" ]; then
+    echo -e "${YELLOW}⚠️ Tiger theme folder not found. Checking folder name...${RESET}"
+    # Sometimes archive extracts as "tiger-sddm-theme"
+    if [ -d "/usr/share/sddm/themes/tiger-sddm-theme" ]; then
+        sudo mv /usr/share/sddm/themes/tiger-sddm-theme "$THEME_DIR"
+    else
+        echo "❌ Tiger theme could not be installed."
+        exit 1
+    fi
+fi
+
+# Install fonts
+if [ -d "$THEME_DIR/TTF" ]; then
+    sudo cp -r "$THEME_DIR/TTF" /usr/share/fonts/
+    fc-cache -f -v
+fi
+
+# Create SDDM config directory
+sudo mkdir -p /etc/sddm.conf.d
+
+CONF_FILE="/etc/sddm.conf.d/theme.conf"
+
+# Write or update theme config
+echo -e "${GREEN}✔️ Setting SDDM theme to 'tiger'...${RESET}"
+echo -e "[Theme]\nCurrent=tiger" | sudo tee "$CONF_FILE" > /dev/null
+
+# Set background inside theme.conf
+THEME_CONF="$THEME_DIR/theme.conf"
+
+if grep -q "^Background=" "$THEME_CONF"; then
+    sudo sed -i 's/^Background=.*/Background="default"/' "$THEME_CONF"
+else
+    echo 'Background="default"' | sudo tee -a "$THEME_CONF" > /dev/null
+fi
+
+# Copy background if available
+if [ -f "$SCRIPT_DIR/background/default" ]; then
+    sudo cp "$SCRIPT_DIR/background/default" "$THEME_DIR/default"
+    echo -e "${GREEN}✔️ Background image applied.${RESET}"
+else
+    echo -e "${YELLOW}⚠️ No custom background found. Using default.${RESET}"
+fi
+
+echo -e "${GREEN}✅ Tiger SDDM theme installed and configured successfully!${RESET}"
 
 
 # #>>>>>> INSTALLING LAZYVIM FOR CODING
