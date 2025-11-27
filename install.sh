@@ -18,7 +18,7 @@ cat << 'EOF'
 |__|   |__|__||__|\_||_____|      \___||____/  \___|  |__|  |_____||___|___|
 
 
-                             F A K E - S Y S T E M
+                            EVERYTHING IS AN ILLUSION 
 EOF
 
 
@@ -182,7 +182,10 @@ rm -rf ~/.config/emacs
 rm -rf ~/.emacs.d
 rm -rf ~/.config/i3
 rm -rf ~/.config/dunst
+rm -rf ~/.config/nvim
 
 cd ~/dotfiles/
 stow i3/ emacs/ fastfetch/ dunst/ nvim/
 echo -e "${GREEN}✔️ Dotfiles applied successfully!${RESET}"
+
+echo -e "${GREEN}✔️ YOU ARE ALL DONE${RESET}"
