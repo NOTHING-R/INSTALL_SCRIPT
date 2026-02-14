@@ -37,12 +37,21 @@ cd ..
 
 # INSTALLING ALL THE REQUERED PACKAGES
 echo -e "${YELLOW}Installing required applications...${RESET}"
-sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools dunst libnotify flameshot sddm emacs alacritty fish stow picom clang make cmake gcc nodejs npm vlc loupe firefox thunar okular nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects ripgrep fd unzip curl 
+sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-manager-applet net-tools dunst libnotify flameshot sddm emacs alacritty fish stow picom clang make cmake gcc nodejs npm vlc loupe firefox thunar okular nerd-fonts ttf-jetbrains-mono ttf-jetbrains-mono-nerd ttf-indic-otf harfbuzz noto-fonts noto-fonts-cjk noto-fonts-emoji qt5-declarative qt5-quickcontrols2 qt5-graphicaleffects ripgrep fd unzip curl gvfs udisks2 thunar-volman polkit-gnome
+
 echo -e "${GREEN}ADDING VM CONFIG!${RESET}"
-sudo pacman -S qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils openbsd-netcat
-sudo systemctl enable libvirtd.service
-sudo systemctl start libvirtd.service
-sudo usermod -aG libvirt $(whoami)
+sudo pacman -S --needed \
+    qemu-desktop \
+    virt-manager \
+    virt-viewer \
+    dnsmasq \
+    vde2 \
+    openbsd-netcat \
+    libvirt \
+    edk2-ovmf
+
+sudo systemctl enable --now libvirtd
+sudo usermod -aG libvirt "$(whoami)"
 sudo virsh net-start default
 sudo virsh net-autostart default
 
