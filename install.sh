@@ -41,7 +41,7 @@ sudo pacman -S xorg xorg-xinit xorg-server xorg-xrandr xorg-xrdb vim network-man
 
 echo -e "${GREEN}ADDING VM CONFIG!${RESET}"
 sudo pacman -S --needed \
-    qemu-desktop \
+    qemu \
     virt-manager \
     virt-viewer \
     dnsmasq \
